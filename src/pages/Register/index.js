@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../global.css';
 import './style.css';
-import cashBackImg from '../../assets/cashback.svg';
+// import cashBackImg from '../../assets/cashback.svg';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import { ErrorMessage, Formik, Form as FormikForm, Field } from 'formik';
@@ -36,7 +36,7 @@ export default function Register() {
 
     const handleSubmit = values => {
         localStorage.clear();
-        localStorage.setItem('username', values.name);
+        localStorage.setItem('username', values.name.toUpperCase());
         localStorage.setItem('cpf', values.cpf);
         localStorage.setItem('email', values.email);
         localStorage.setItem('password', values.password);

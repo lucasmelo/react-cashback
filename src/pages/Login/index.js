@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../global.css';
 import './style.css';
-import cashBackImg from '../../assets/cashback.svg';
+// import cashBackImg from '../../assets/cashback.svg';
 import logo from '../../assets/logo.png'
 import { Link, useHistory } from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi';
