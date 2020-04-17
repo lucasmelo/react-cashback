@@ -5,10 +5,9 @@ import { FiLogIn } from 'react-icons/fi';
 import { ErrorMessage, Formik, Form as FormikForm, Field } from 'formik';
 import * as yup from 'yup';
 import logo from '../../assets/logo.png';
+import { addItems } from '../../mocks/items.mock'
 
-export default function NewPurchase() {
-
-
+export const NewPurchase = () => {
     const history = useHistory();
 
     const validations = yup.object().shape({
@@ -26,8 +25,10 @@ export default function NewPurchase() {
     });
 
     const handleLogin = value => {
+        addItems(value);
         history.push('/shopping');
     };
+
 
     return (
         <div className="login-container" >
@@ -66,7 +67,7 @@ export default function NewPurchase() {
 
                             <button className="button" type="submit">Cadastrar</button>
 
-                            <Link to="/register" className="back-link">
+                            <Link to="/shopping" className="back-link">
                                 <FiLogIn size="16" color="#41414d" style={{ marginRight: '5px' }} />
                                 Voltar para suas compras
                             </Link>
@@ -78,3 +79,6 @@ export default function NewPurchase() {
         </div>
     );
 }
+
+export default NewPurchase
+

@@ -8,13 +8,12 @@ import { ErrorMessage, Formik, Form as FormikForm, Field } from 'formik';
 import * as yup from 'yup';
 import logo from '../../assets/logo.png'
 
-
 export default function Register() {
 
     const history = useHistory();
 
     const validations = yup.object().shape({
-        name: yup
+        username: yup
             .string()
             .required('Campo obrigatório')
             .min(3, 'Insira o nome completo')
@@ -36,10 +35,14 @@ export default function Register() {
 
     const handleSubmit = values => {
         localStorage.clear();
-        localStorage.setItem('username', values.name.toUpperCase());
-        localStorage.setItem('cpf', values.cpf);
-        localStorage.setItem('email', values.email);
-        localStorage.setItem('password', values.password);
+        const fields = ['username', 'cpf', 'email', 'password'];
+
+        fields.forEach(e => {
+            localStorage.setItem(e, values[e]);
+        });
+
+        
+
         history.push('/');
     };
 
@@ -53,17 +56,17 @@ export default function Register() {
                 <h1> Faça seu cadastro</h1>
 
 
-                <Formik initialValues={{ name: '', cpf: '', email: '', password: '' }} onSubmit={(values) =>
+                <Formik initialValues={{ username: '', cpf: '', email: '', password: '' }} onSubmit={(values) =>
                     handleSubmit(values)} validationSchema={validations}>
                     {({ errors, touched }) => (
                         <FormikForm>
 
                             <Field
-                                name="name"
+                                name="username"
                                 placeholder="Nome completo"
-                                className={touched.name && errors.name ? 'input-error' : 'input'}
+                                className={touched.username && errors.username ? 'input-error' : 'input'}
                             />
-                            <ErrorMessage component="span" name="name" className="error-message" />
+                            <ErrorMessage component="span" name="username" className="error-message" />
 
                             <Field
                                 name="cpf"
