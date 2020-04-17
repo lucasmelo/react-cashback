@@ -53,7 +53,7 @@
 
 .profile-container header button:hover {
   border: 1px solid #4b49493b;
-  border-radius: 3px
+  border-radius: 3px;
   /* transition: border-color 0.2s; */
 }
 
@@ -123,4 +123,36 @@
   font-size: 35px;
   font-weight: 700;
   color: rgba(35, 100, 30, 0.589);
+}
+
+@media (max-width: 60.4em) {
+  .profile-container header {
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    background: rgba(243, 255, 242, 0.383);
+    padding: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.363);
+    border-radius: 5px;
+  }
+
+  .profile-container header img {
+    height: 49px;
+    margin: auto;
+    padding: 10px;
+  }
+
+  .button {
+    height: 40px;
+    margin: 15px;
+  }
+
+  .profile-container header a {
+    width: 100%;
+    line-height: 41px;
+    margin-top: 0;
+    height: fit-content;
+  }
 }

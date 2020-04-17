@@ -53,12 +53,15 @@ export default function Login() {
                                 name="email"
                                 placeholder="E-mail"
                                 className={touched.email && errors.email ? 'input-error' : 'input'}
+                                maxLength={30}
                             />
                             <ErrorMessage component="span" name="email" className="error-message" />
 
                             <Field
                                 name="password"
+                                type="password"
                                 placeholder="Senha"
+                                maxLength={4}
                                 className={touched.password && errors.password ? 'input-error' : 'input'}
                             />
                             <ErrorMessage component="span" name="password" className="error-message" />

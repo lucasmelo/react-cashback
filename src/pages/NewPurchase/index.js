@@ -6,6 +6,9 @@ import { ErrorMessage, Formik, Form as FormikForm, Field } from 'formik';
 import * as yup from 'yup';
 import logo from '../../assets/logo.png';
 import { addItems } from '../../mocks/items.mock'
+import MaskedInput from 'react-text-mask';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask'
+
 
 export const NewPurchase = () => {
     const history = useHistory();
@@ -17,8 +20,8 @@ export const NewPurchase = () => {
             .min(5, 'Código inválido'),
         value: yup
             .string()
-            .required('Campo obrigatório')
-            .min(4, 'Sua senha deve ter 4 caracteres'),
+            .max(6)
+            .required('Campo obrigatório'),
         date: yup
             .string()
             .required('Campo obrigatório')
@@ -28,6 +31,11 @@ export const NewPurchase = () => {
         addItems(value);
         history.push('/shopping');
     };
+
+    const numberMask = createNumberMask({
+        prefix: 'R$',
+        suffix: '' // This will put the dollar sign at the end, with a space.
+    })
 
 
     return (
@@ -51,18 +59,30 @@ export const NewPurchase = () => {
                             />
                             <ErrorMessage component="span" name="code" className="error-message" />
 
-                            <Field
-                                name="value"
-                                placeholder="Valor"
-                                className={touched.value && errors.value ? 'input-error' : 'input'}
-                            />
+                            <Field name="value">
+                                {({ field }) => (
+                                    <MaskedInput
+                                        guide={false}
+                                        mask={numberMask}
+                                        {...field}
+                                        placeholder="Valor da compra"
+                                        className={touched.value && errors.value ? 'input-error' : 'input'}
+                                    />
+                                )}
+                            </Field>
                             <ErrorMessage component="span" name="value" className="error-message" />
 
-                            <Field
-                                name="date"
-                                placeholder="Data"
-                                className={touched.date && errors.date ? 'input-error' : 'input'}
-                            />
+                            <Field name="date">
+                                {({ field }) => (
+                                    <MaskedInput
+                                        guide={false}
+                                        mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
+                                        {...field}
+                                        placeholder="Data da compra"
+                                        className={touched.date && errors.date ? 'input-error' : 'input'}
+                                    />
+                                )}
+                            </Field>
                             <ErrorMessage component="span" name="date" className="error-message" />
 
                             <button className="button" type="submit">Cadastrar</button>

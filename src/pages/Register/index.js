@@ -6,7 +6,9 @@ import { FiArrowLeft } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import { ErrorMessage, Formik, Form as FormikForm, Field } from 'formik';
 import * as yup from 'yup';
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo.png';
+import MaskedInput from 'react-text-mask'
+import emailMask from 'text-mask-addons/dist/emailMask'
 
 export default function Register() {
 
@@ -21,12 +23,13 @@ export default function Register() {
         cpf: yup
             .string()
             .required('Campo obrigatório')
-            .min(11, 'Insira o cpf completo'),
+            .min(14, 'Insira o cpf completo'),
         email: yup
             .string()
             .required('Campo obrigatório')
-            .min(5, 'Insira o email completo')
-            .matches('@', 'E-mail inválido'),
+            .min(7, 'Insira o email completo')
+            .matches('@', 'E-mail inválido')
+            .matches('.', 'E-mail inválido'),
         password: yup
             .string()
             .required('Campo obrigatório')
@@ -41,7 +44,7 @@ export default function Register() {
             localStorage.setItem(e, values[e]);
         });
 
-        
+
 
         history.push('/');
     };
@@ -68,23 +71,39 @@ export default function Register() {
                             />
                             <ErrorMessage component="span" name="username" className="error-message" />
 
-                            <Field
-                                name="cpf"
-                                placeholder="CPF"
-                                className={touched.cpf && errors.cpf ? 'input-error' : 'input'}
-                            />
+                            <Field name="cpf" maxLength={11}>
+                                {({ field }) => (
+                                    <MaskedInput
+                                        guide={false}
+                                        mask={[/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/]}
+                                        {...field}
+                                        placeholder="CPF"
+                                        className={touched.cpf && errors.cpf ? 'input-error' : 'input'}
+                                    />
+                                )}
+                            </Field>
+
                             <ErrorMessage component="span" name="cpf" className="error-message" />
 
-                            <Field
-                                name="email"
-                                placeholder="E-mail"
-                                className={touched.email && errors.email ? 'input-error' : 'input'}
-                            />
+                            <Field name="email" maxLength={30}>
+                                {({ field }) => (
+                                    <MaskedInput
+                                        guide={false}
+                                        mask={emailMask}
+                                        {...field}
+                                        placeholder="Email"
+                                        className={touched.email && errors.email ? 'input-error' : 'input'}
+                                    />
+                                )}
+                            </Field>
                             <ErrorMessage component="span" name="email" className="error-message" />
+
 
                             <Field
                                 name="password"
+                                type="password"
                                 placeholder="Senha"
+                                maxLength={4}
                                 className={touched.password && errors.password ? 'input-error' : 'input'}
                             />
                             <ErrorMessage component="span" name="password" className="error-message" />

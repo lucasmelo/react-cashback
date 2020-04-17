@@ -7,18 +7,18 @@ import { getItems, getNewItems, getCurrentCash } from '../../mocks/items.mock';
 import { FiPower } from 'react-icons/fi'
 
 export default function Shopping() {
+    const history = useHistory();
     const username = localStorage.getItem('username');
     const [items, setItems] = useState([]);
-    const history = useHistory();
     const [currentCash, setCurrentChash] = useState("");
 
     useEffect(() => {
         setItems(getItems);
-        setCurrentChash(getCurrentCash)
+        setCurrentChash(getCurrentCash);
     }, [items.length]);
 
     const handleLogout = () => {
-        history.push('/')
+        history.push('/');
     }
 
     const newItems = getNewItems();
@@ -37,7 +37,11 @@ export default function Shopping() {
 
             <div className="status-cashback">
                 <div>CASHBACK DISPONÍVEL</div>
-                <b>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(currentCash)}</b>
+                <b>
+                    {new Intl
+                        .NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
+                        .format(currentCash)}
+                </b>
             </div>
 
             <h1>Cadastros aprovados</h1>
