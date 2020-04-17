@@ -44,8 +44,6 @@ export default function Register() {
             localStorage.setItem(e, values[e]);
         });
 
-
-
         history.push('/');
     };
 
@@ -118,11 +116,7 @@ export default function Register() {
                         </FormikForm>
                     )}
                 </Formik>
-
             </section>
-
-            {/* <img src={cashBackImg} alt="Cash Back" /> */}
-
         </div>
     );
 }

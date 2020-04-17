@@ -28,9 +28,8 @@ export default function Login() {
     })
 
     const handleLogin = value => {
-        history.push('/shopping')
+        history.push('/shopping');
     }
-
 
     return (
         <div className="login-container">
@@ -76,8 +75,6 @@ export default function Login() {
                     )}
                 </Formik>
             </section>
-            {/* <img src={cashBackImg} alt="Cash Back" /> */}
-
         </div>
     );
 }

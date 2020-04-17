@@ -7,8 +7,8 @@ import * as yup from 'yup';
 import logo from '../../assets/logo.png';
 import { addItems } from '../../mocks/items.mock'
 import MaskedInput from 'react-text-mask';
-import createNumberMask from 'text-mask-addons/dist/createNumberMask'
-
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+import * as moment from 'moment'
 
 export const NewPurchase = () => {
     const history = useHistory();
@@ -20,11 +20,12 @@ export const NewPurchase = () => {
             .min(5, 'Código inválido'),
         value: yup
             .string()
-            .max(6)
             .required('Campo obrigatório'),
         date: yup
-            .string()
+            .date('Data inválida')
+            .min(2020, 'Você só pode cadastrar as compras do ano atual')
             .required('Campo obrigatório')
+            .test('test-date', 'Data invalida', value => moment(value).isValid())
     });
 
     const handleLogin = value => {
@@ -33,13 +34,15 @@ export const NewPurchase = () => {
     };
 
     const numberMask = createNumberMask({
-        prefix: 'R$',
-        suffix: '' // This will put the dollar sign at the end, with a space.
+        prefix: 'R$ ',
+        suffix: '',
+        includeThousandsSeparator: false,
+        thousandsSeparatorSymbol: ',',
+        allowDecimal: true
     })
 
-
     return (
-        <div className="login-container" >
+        <div className="purchase-container" >
             <section className="form">
                 <div>
                     <img src={logo} alt="Logo" />
@@ -56,10 +59,11 @@ export const NewPurchase = () => {
                                 name="code"
                                 placeholder="Código da compra"
                                 className={touched.code && errors.code ? 'input-error' : 'input'}
+                                maxLength={5}
                             />
                             <ErrorMessage component="span" name="code" className="error-message" />
 
-                            <Field name="value">
+                            <Field name="value" >
                                 {({ field }) => (
                                     <MaskedInput
                                         guide={false}
@@ -67,6 +71,7 @@ export const NewPurchase = () => {
                                         {...field}
                                         placeholder="Valor da compra"
                                         className={touched.value && errors.value ? 'input-error' : 'input'}
+                                        maxLength={12}
                                     />
                                 )}
                             </Field>

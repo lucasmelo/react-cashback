@@ -1,4 +1,3 @@
-
 .register-container {
   display: flex;
   width: 100;
@@ -20,7 +19,6 @@
   margin-top: 20px;
 }
 
-
 .register-container section.form {
   width: 100%;
   max-width: 350px;
@@ -31,7 +29,7 @@
   padding: 10px;
 }
 
-.register-container section.form  h1 {
+.register-container section.form h1 {
   font-size: 32px;
   display: flex;
   justify-content: center;
@@ -48,5 +46,4 @@
 }
 
 @media (max-width: 60.4em) {
- 
 }

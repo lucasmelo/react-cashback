@@ -1,3 +1,4 @@
+
 .profile-container {
   width: 100%;
   padding: 20px;
@@ -14,18 +15,28 @@
   border-radius: 5px;
 }
 
+.status-cashback p {
+  font-size: 20px;
+    color: #000000c4;
+    line-height: 2;
+}
+
 .status-cashback {
   flex-direction: column;
   align-items: center;
   display: flex;
   justify-content: center;
-  height: 100px;
-  background: rgba(243, 255, 242, 0.383);
+  height: -moz-fit-content;
+  height: fit-content;
+  background: rgba(122, 246, 157, 0.32);
   padding: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.363);
-  border-radius: 5px;
+  border: none;
+  border-radius: 49px;
   margin-top: 20px;
+  margin: auto;
   font-size: 20px;
+  box-shadow: -1px 4px 26px -10px #21706187;
+  margin-top: 20px;
 }
 
 .profile-container header span {
@@ -76,11 +87,18 @@
   position: relative;
 }
 
-.profile-container ul li button {
+.profile-container ul li span {
+  display: flex;
+  align-items: center;
   position: absolute;
   right: 24px;
   top: 24px;
   border: 0;
+  color: #72a7a89e;
+  font-size: 15px;
+  border: 2px solid #c5f0c1;
+  border-radius: 20px;
+  padding: 10px;
 }
 
 .profile-container ul li button:hover {
