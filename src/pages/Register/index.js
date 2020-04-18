@@ -63,15 +63,21 @@ export default function Register() {
                         <FormikForm>
 
                             <Field
+                                data-testid="username"
                                 name="username"
                                 placeholder="Nome completo"
                                 className={touched.username && errors.username ? 'input-error' : 'input'}
                             />
                             <ErrorMessage component="span" name="username" className="error-message" />
 
-                            <Field name="cpf" maxLength={11}>
+                            <Field
+                                name="cpf"
+                                maxLength={11}
+
+                            >
                                 {({ field }) => (
                                     <MaskedInput
+                                        data-testid="cpf"
                                         guide={false}
                                         mask={[/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/]}
                                         {...field}
@@ -83,9 +89,13 @@ export default function Register() {
 
                             <ErrorMessage component="span" name="cpf" className="error-message" />
 
-                            <Field name="email" maxLength={30}>
+                            <Field
+                                name="email"
+                                maxLength={30}
+                            >
                                 {({ field }) => (
                                     <MaskedInput
+                                        data-testid="email"
                                         guide={false}
                                         mask={emailMask}
                                         {...field}
@@ -98,6 +108,7 @@ export default function Register() {
 
 
                             <Field
+                                data-testid="password"
                                 name="password"
                                 type="password"
                                 placeholder="Senha"

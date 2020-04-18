@@ -49,6 +49,7 @@ export default function Login() {
                         <FormikForm>
 
                             <Field
+                                data-testid="email"
                                 name="email"
                                 placeholder="E-mail"
                                 className={touched.email && errors.email ? 'input-error' : 'input'}
@@ -57,6 +58,7 @@ export default function Login() {
                             <ErrorMessage component="span" name="email" className="error-message" />
 
                             <Field
+                                data-testid="password"
                                 name="password"
                                 type="password"
                                 placeholder="Senha"

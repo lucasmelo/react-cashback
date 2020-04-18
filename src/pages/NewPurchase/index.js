@@ -8,7 +8,6 @@ import logo from '../../assets/logo.png';
 import { addItems } from '../../mocks/items.mock'
 import MaskedInput from 'react-text-mask';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
-import * as moment from 'moment'
 
 export const NewPurchase = () => {
     const history = useHistory();
@@ -25,7 +24,6 @@ export const NewPurchase = () => {
             .date('Data inválida')
             .min(2020, 'Você só pode cadastrar as compras do ano atual')
             .required('Campo obrigatório')
-            .test('test-date', 'Data invalida', value => moment(value).isValid())
     });
 
     const handleLogin = value => {
@@ -56,6 +54,7 @@ export const NewPurchase = () => {
                     {({ errors, touched }) => (
                         <FormikForm>
                             <Field
+                                data-testid="code"
                                 name="code"
                                 placeholder="Código da compra"
                                 className={touched.code && errors.code ? 'input-error' : 'input'}
@@ -66,6 +65,7 @@ export const NewPurchase = () => {
                             <Field name="value" >
                                 {({ field }) => (
                                     <MaskedInput
+                                        data-testid="value"
                                         guide={false}
                                         mask={numberMask}
                                         {...field}
@@ -80,6 +80,7 @@ export const NewPurchase = () => {
                             <Field name="date">
                                 {({ field }) => (
                                     <MaskedInput
+                                        data-testid="date"
                                         guide={false}
                                         mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
                                         {...field}
