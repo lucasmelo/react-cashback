@@ -1,13 +1,14 @@
 import React from 'react';
-import './style.css'
 import { Link, useHistory } from 'react-router-dom';
-import { FiLogIn } from 'react-icons/fi';
 import { ErrorMessage, Formik, Form as FormikForm, Field } from 'formik';
 import * as yup from 'yup';
-import logo from '../../assets/logo.png';
+import './style.css'
+import logo from '../../assets/img/logo.png';
+import { FiLogIn } from 'react-icons/fi';
 import { addItems } from '../../mocks/items.mock'
 import MaskedInput from 'react-text-mask';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+import DateValidator from '../../assets/DateValidator/date.validator'
 
 export const NewPurchase = () => {
     const history = useHistory();
@@ -21,9 +22,9 @@ export const NewPurchase = () => {
             .string()
             .required('Campo obrigatório'),
         date: yup
-            .date('Data inválida')
-            .min(2020, 'Você só pode cadastrar as compras do ano atual')
+            .string()
             .required('Campo obrigatório')
+            .test('test-number', 'Você só pode cadastrar as compras do mês atual', date => DateValidator(date))
     });
 
     const handleLogin = value => {
@@ -34,10 +35,10 @@ export const NewPurchase = () => {
     const numberMask = createNumberMask({
         prefix: 'R$ ',
         suffix: '',
+        allowDecimal: true,
         includeThousandsSeparator: false,
-        thousandsSeparatorSymbol: ',',
-        allowDecimal: true
-    })
+        decimalSymbol: ','
+    });
 
     return (
         <div className="purchase-container" >
@@ -97,7 +98,6 @@ export const NewPurchase = () => {
                                 <FiLogIn size="16" color="#41414d" style={{ marginRight: '5px' }} />
                                 Voltar para suas compras
                             </Link>
-
                         </FormikForm>
                     )}
                 </Formik>
@@ -106,5 +106,4 @@ export const NewPurchase = () => {
     );
 }
 
-export default NewPurchase
-
+export default NewPurchase;

@@ -1,4 +1,3 @@
-
 .profile-container {
   width: 100%;
   padding: 20px;
@@ -17,8 +16,12 @@
 
 .status-cashback p {
   font-size: 20px;
-    color: #000000c4;
-    line-height: 2;
+  color: #000000c4;
+  line-height: 2;
+}
+
+.status-cashback label {
+  font-weight: bold;
 }
 
 .status-cashback {
@@ -164,7 +167,6 @@
 
   .button {
     height: 40px;
-    margin: 15px;
   }
 
   .profile-container header a {

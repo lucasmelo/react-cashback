@@ -6,7 +6,7 @@ import { FiArrowLeft } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import { ErrorMessage, Formik, Form as FormikForm, Field } from 'formik';
 import * as yup from 'yup';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/img/logo.png';
 import MaskedInput from 'react-text-mask'
 import emailMask from 'text-mask-addons/dist/emailMask'
 
@@ -73,7 +73,6 @@ export default function Register() {
                             <Field
                                 name="cpf"
                                 maxLength={11}
-
                             >
                                 {({ field }) => (
                                     <MaskedInput

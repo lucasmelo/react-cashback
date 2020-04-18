@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './style.css';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/img/logo.png';
 import { getItems, getNewItems, getCurrentCash } from '../../mocks/items.mock';
 import { FiPower } from 'react-icons/fi';
 import { AiOutlineDollar } from 'react-icons/ai';
@@ -42,16 +42,15 @@ export default function Shopping() {
             <div className="status-cashback">
                 <AiOutlineDollar size={50} color="#25442557" style={{ marginBottom: '5px' }} />
                 <p>CASHBACK ACUMULADO</p>
-                <b>
+                <label>
                     {currentCash.length ?
                         new Intl
                             .NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
                             .format(currentCash) : 'Carregando...'}
-                </b>
+                </label>
             </div>
 
             <h1>Cadastros aprovados</h1>
-
             {items.length ? null : <p> Carregando suas informações...</p>}
 
             <ul>
@@ -121,6 +120,6 @@ export default function Shopping() {
                     <p>Nenhum novo cadastro...</p>
                 }
             </ul>
-        </div >
+        </div>
     )
 }
