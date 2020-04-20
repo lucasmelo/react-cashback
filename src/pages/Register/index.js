@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../global.css';
 import './style.css';
-// import cashBackImg from '../../assets/cashback.svg';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import { ErrorMessage, Formik, Form as FormikForm, Field } from 'formik';
