@@ -1,13 +1,11 @@
 import React from 'react';
 import '../../global.css';
 import './style.css';
-// import cashBackImg from '../../assets/cashback.svg';
 import logo from '../../assets/img/logo.png'
 import { Link, useHistory } from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi';
 import { ErrorMessage, Formik, Form as FormikForm, Field } from 'formik';
 import * as yup from 'yup';
-import Checkbox from '@material-ui/core/Checkbox';
 
 export default function Login() {
     const history = useHistory();
